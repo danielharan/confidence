@@ -1,6 +1,6 @@
 require 'httparty'
 
-module Apathy
+module Confidence
   class Vote
     def self.fetch(attrs={})
       vote = new(attrs)

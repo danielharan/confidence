@@ -6,7 +6,7 @@ VOTE_DATA = Crack::XML.parse(
 
 
   class VoteTest < MiniTest::Unit::TestCase
-  include Apathy
+  include Confidence
 
   def setup
     @vote = Vote.new(:doc => VOTE_DATA)
@@ -25,12 +25,12 @@ VOTE_DATA = Crack::XML.parse(
       http://www2.parl.gc.ca/HouseChamberBusiness/Chambervotedetail.aspx?Language=E&Mode=1&Parl=40&Ses=2&FltrParl=40&FltrSes=2&vote=45&xml=True
     URL
 
-    vote = Apathy::Vote.fetch(
+    vote = Confidence::Vote.fetch(
       :parliament => 40,
       :session    => 2,
       :number     => 45
     )
-    assert_kind_of Apathy::Vote, vote
+    assert_kind_of Confidence::Vote, vote
     assert_equal 40,   vote.parliament
     assert_equal 2,    vote.session
     assert_equal 45,   vote.number
@@ -44,7 +44,7 @@ VOTE_DATA = Crack::XML.parse(
 end
 
 class ParticipantTest < MiniTest::Unit::TestCase
-  include Apathy
+  include Confidence
 
   def setup
     @vote = Vote.new(:doc => VOTE_DATA)
