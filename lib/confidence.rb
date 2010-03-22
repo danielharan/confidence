@@ -26,9 +26,30 @@ module Confidence
       @doc        = attrs[:doc]
     end
 
+    def decision
+      @doc['Decision']
+    end
+
+    def context
+      @doc['Context']['Para']
+    end
+
     def participants
       @doc['Participant'].map {|p| Participant.new(p) }
     end
+
+    def bill
+      Bill.new(@doc['RelatedBill'])
+    end
+  end
+
+  class Bill
+    def initialize(attrs={})
+      @attrs = attrs
+    end
+
+    def number; @attrs['number']; end
+    def title;  @attrs['Title'];  end
   end
 
   class Participant
@@ -47,25 +68,4 @@ module Confidence
     def province;     @attrs['Province'];     end
   end
 end
-
-__END__
-module Apathy
-  class Vote < Nokogiri
-  end
-
-  class Participant
-  end
-end
-
-vote = Apathy::Vote.fetch(
-  :parliament => 40,
-  :session    => 2,
-  :number     => 45
-)
-
-vote.participants.first.recorded_vote #=> yea
-vote.related_bill
-
-
-#Bill.create(:number => vote.related_bill.number, :title => vote.related_bill.title)
 

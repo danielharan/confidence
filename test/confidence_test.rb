@@ -17,6 +17,8 @@ VOTE_DATA = Crack::XML.parse(
     assert_respond_to @vote, :parliament
     assert_respond_to @vote, :session
     assert_respond_to @vote, :number
+    assert_respond_to @vote, :decision
+    assert_respond_to @vote, :context
     assert_respond_to @vote, :doc
   end
 
@@ -37,9 +39,23 @@ VOTE_DATA = Crack::XML.parse(
     assert_equal :doc, vote.doc
   end
 
+  test "vote decision" do
+    assert_equal "Agreed to", @vote.decision
+  end
+
+  test "vote context" do
+    assert_match /^That the Bill/, @vote.context
+  end
+
   test "vote participants" do
     assert_equal 271, @vote.participants.size
     assert_kind_of Participant, @vote.participants.first
+  end
+
+  test "vote bill" do
+    assert_equal 'C-2', @vote.bill.number
+    assert_match /^An Act to implement the/, @vote.bill.title
+    assert_kind_of Bill, @vote.bill
   end
 end
 
@@ -57,5 +73,19 @@ class ParticipantTest < MiniTest::Unit::TestCase
 
   test "recorded vote" do
     assert_equal "yea", @participant.recorded_vote
+  end
+end
+
+class BillTest < MiniTest::Unit::TestCase
+  include Confidence
+
+  def setup
+    @vote = Vote.new(:doc => VOTE_DATA)
+    @bill = @vote.bill
+  end
+
+  test "api" do
+    assert_respond_to @bill, :number
+    assert_respond_to @bill, :title
   end
 end
