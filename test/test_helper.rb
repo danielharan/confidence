@@ -7,7 +7,7 @@ begin require 'ruby-debug'; rescue LoadError; end
 begin require 'redgreen'  ; rescue LoadError; end
 begin require 'phocus'    ; rescue LoadError; end
 
-require 'lib/vote'
+require 'lib/confidence'
 
 class MiniTest::Unit::TestCase
   def self.test(name, &block)
