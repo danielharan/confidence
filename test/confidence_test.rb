@@ -1,15 +1,15 @@
 require 'test/test_helper'
 
-VOTE_XML = Crack::XML.parse(
+VOTE_DATA = Crack::XML.parse(
   Pathname(__FILE__).dirname.join("fixtures/vote.xml").read
 )['Vote']
 
 
-class VoteTest < MiniTest::Unit::TestCase
+  class VoteTest < MiniTest::Unit::TestCase
   include Apathy
 
   def setup
-    @vote = Vote.new(:doc => VOTE_XML)
+    @vote = Vote.new(:doc => VOTE_DATA)
   end
 
   test "api" do
@@ -47,7 +47,7 @@ class ParticipantTest < MiniTest::Unit::TestCase
   include Apathy
 
   def setup
-    @vote = Vote.new(:doc => VOTE_XML)
+    @vote = Vote.new(:doc => VOTE_DATA)
     @participant = @vote.participants.first
   end
 
