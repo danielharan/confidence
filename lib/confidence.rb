@@ -37,6 +37,12 @@ module Apathy
     def recorded_vote
       @recorded_vote ||= @attrs['RecordedVote'].select {|k,v| v == '1' }.first.first.downcase
     end
+    
+    def firstname;    @attrs['FirstName'];    end
+    def lastname;     @attrs['LastName'];     end
+    def party;        @attrs['Party'];        end
+    def constituency; @attrs['Constituency']; end
+    def province;     @attrs['Province'];     end
   end
 end
 
