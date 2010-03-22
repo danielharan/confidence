@@ -1,6 +1,8 @@
 require 'httparty'
 
 module Confidence
+  VERSION = '0.5'
+
   class Vote
     def self.fetch(attrs={})
       vote = new(attrs)
