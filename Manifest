@@ -1,0 +1,8 @@
+Manifest
+README
+Rakefile
+lib/confidence.rb
+specs.watchr
+test/confidence_test.rb
+test/fixtures/vote.xml
+test/test_helper.rb
