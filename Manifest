@@ -1,6 +1,7 @@
 Manifest
 README
 Rakefile
+confidence.gemspec
 lib/confidence.rb
 specs.watchr
 test/confidence_test.rb
