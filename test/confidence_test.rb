@@ -19,6 +19,7 @@ VOTE_DATA = Crack::XML.parse(
     assert_respond_to @vote, :number
     assert_respond_to @vote, :decision
     assert_respond_to @vote, :context
+    assert_respond_to @vote, :sponsor
     assert_respond_to @vote, :doc
   end
 
@@ -50,6 +51,10 @@ VOTE_DATA = Crack::XML.parse(
   test "vote participants" do
     assert_equal 271, @vote.participants.size
     assert_kind_of Participant, @vote.participants.first
+  end
+  
+  test "vote sponsor" do
+    assert_equal "Mr. Day (Minister of International Trade and Minister for the Asia-Pacific Gateway)", @vote.sponsor
   end
 
   test "vote bill" do

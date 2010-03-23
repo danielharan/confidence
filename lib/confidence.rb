@@ -1,7 +1,7 @@
 require 'httparty'
 
 module Confidence
-  VERSION = '0.5.1'
+  VERSION = '0.5.2'
 
   class Vote
     def self.fetch(attrs={})
@@ -32,6 +32,10 @@ module Confidence
 
     def context
       @doc['Context']['Para']
+    end
+
+    def sponsor
+      @doc['Sponsor']
     end
 
     def participants
